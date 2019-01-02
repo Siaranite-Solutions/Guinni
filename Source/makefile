@@ -3,17 +3,17 @@ AS = nasm
 AFLAGS = -f elf32
 CFLAGS = -c -std=gnu99 -ffreestanding -O0 -Wall -w -g -I ./include
 LD = i686-elf-gcc
-LDFLAGS = -T linker.ld -ffreestanding -O2 -nostdlib -gcc
+LDFLAGS = -T linker.ld -ffreestanding -O2 -nostdlib
 
 TARGET = ../bin/guinni.bin
 
 OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c) $(shell find ./src -name "*.c")) $(patsubst %.asm, %.o, $(wildcard *.asm) $(shell find ./src -name "*.asm"))
 
-all: $(TARGET)
-
+all: $(TARGET)	
 
 $(TARGET): $(OBJECTS)
-	$(LD) -o $@ -T linker.ld -ffreestanding -O2 -nostdlib $^ -gcc
+	mkdir -p ../bin
+	$(LD) -o $@ -T linker.ld -ffreestanding -O2 -nostdlib $^
 
 %.o: %.c
 	$(CC) $(CFLAGS) $^ -o $@
@@ -21,11 +21,19 @@ $(TARGET): $(OBJECTS)
 	$(AS) $(AFLAGS) $^ -o $@
 clean:
 	rm $(TARGET) $(OBJECTS)
+	rm -r ../bin
+	rm -rf iso
 
-iso:
-	nm ../bin/guinni.bin > ../bin/initrd/boot/INFINITY.MAP
+iso:	all
+	mkdir -p iso
+	mkdir -p iso/boot
+	mkdir -p iso/boot/grub
 	# ~ Now is not the time for fear, that comes later ~
-	#mkifsrd -d ../bin/initrd -o ../bin/iso/initrd.img
-	cp ../bin/guinni.bin ../bin/iso/boot/guinni.bin
-	cp config/grub.cfg ../bin/iso/boot/grub/grub.cfg
-	grub2-mkrescue -o ../bin/guinni.iso ../bin/iso
+	# nm ../bin/guinni.bin > ../bin/initrd/boot/INFINITY.MAP	
+	# mkifsrd -d ../bin/initrd -o ../bin/iso/initrd.img
+	cp ../bin/guinni.bin iso/boot/guinni.bin
+	cp config/grub.cfg iso/boot/grub/grub.cfg
+	grub-mkrescue -o ../bin/guinni.iso iso
+
+qemu:	iso
+	qemu-system-i386 -cdrom ../bin/guinni.iso
