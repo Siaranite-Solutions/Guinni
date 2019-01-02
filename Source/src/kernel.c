@@ -6,8 +6,10 @@
 
 
 void kernel_main(void) {
-	init_gdt();
-	init_idt();
 	terminal_initialize();
-	terminal_writestring("Hello, kernel World!");
+	terminal_writestring("Initializing GDT\n");
+	init_gdt();
+	terminal_writestring("Initializing IDT\n");
+	init_idt();
+	terminal_writestring("Hello, kernel World!\n");
 }
