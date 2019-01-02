@@ -1,4 +1,5 @@
 bin/
+Source/iso/
 *.iso
 *.o
 *.bin
