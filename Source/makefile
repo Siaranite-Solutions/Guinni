@@ -37,3 +37,5 @@ iso:	all
 
 qemu:	iso
 	qemu-system-i386 -cdrom ../bin/guinni.iso
+
+run:	qemu

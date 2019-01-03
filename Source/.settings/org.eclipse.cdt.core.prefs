@@ -1,0 +1,11 @@
+eclipse.preferences.version=1
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.1517840492/PATH/delimiter=\:
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.1517840492/PATH/operation=replace
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.1517840492/PATH/value=/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/usr/games\:/usr/local/games\:/home/arawn/opt/cross/bin
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.1517840492/append=true
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.1517840492/appendContributed=false
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.913108597/PATH/delimiter=\:
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.913108597/PATH/operation=replace
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.913108597/PATH/value=/bin\:/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/usr/games\:/usr/local/games\:/home/arawn/opt/cross/bin
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.913108597/append=true
+environment/project/cdt.managedbuild.toolchain.gnu.cross.base.913108597/appendContributed=false

@@ -4,7 +4,9 @@
 #include <kernel/tty.h>
 #include <kernel/common.h>
 #include <kernel/vga.h>
+#include <kernel/device.h>
 
+struct device textscreen_device;
 static const size_t VGA_WIDTH = 80;
 static const size_t VGA_HEIGHT = 25;
 static uint16_t* const vram = (uint16_t*) 0xB8000;
@@ -35,6 +37,10 @@ static void textscreen_scroll()
 void terminal_initialize(void) {
 	set_attributes(15, 0);
 	clrscr();
+	textscreen_device.device_name = "textscreen";
+	textscreen_device.device_type = DEV_CHAR_DEVICE;
+	textscreen_device.write = terminal_write;
+	register_device(&textscreen_device);
 }
 
 void clrscr()

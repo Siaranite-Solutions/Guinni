@@ -4,7 +4,6 @@
  */
 #include <stdint.h>
 #include <kernel/idt.h>
-#include <kernel/portio.h>
 #include <kernel/interrupt.h>
 #include <kernel/common.h>
 
